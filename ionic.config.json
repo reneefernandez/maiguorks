@@ -1,0 +1,8 @@
+{
+  "name": "mi_proyecto_peliculas",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
