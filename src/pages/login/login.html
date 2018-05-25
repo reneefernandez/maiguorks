@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col text-center>
+      <img src="assets/img/movies.png" alt="Logo">
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label floating>Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="datosLogin.usuario"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label floating>Contraseña</ion-label> 
+        <ion-input type="password" [(ngModel)]="datosLogin.contrasenia"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <button ion-button block (click)="login('datosLogin');">Ingresar</button>
+  <button ion-button block (click)="goToRegistro()">Registrarse</button>
+</ion-content>

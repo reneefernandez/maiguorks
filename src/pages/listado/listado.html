@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+          Listado
+        </ion-title>
+      </ion-navbar>
+
+  <ion-toolbar>
+      <ion-searchbar  (ionInput)="obtenerPelicula($event)" debounce="800" [(ngModel)]="buscador"></ion-searchbar>
+  </ion-toolbar>
+ 
+
+</ion-header>
+<ion-content>
+   <ion-list>
+   <!-- <ion-item color="none" id="listado-list-item5">
+      Item 1
+    </ion-item>
+    <ion-item color="none" id="listado-list-item6">
+      Item 
+    </ion-item>
+    <ion-item color="none" id="listado-list-item7">
+      Item 3
+    </ion-item> -->
+  </ion-list>
+</ion-content>
