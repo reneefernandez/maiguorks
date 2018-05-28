@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, ModalController, LoadingController, ToastController, MenuController } from 'ionic-angular';
 
 
 import { DataProvider } from '../../providers/data/data';
@@ -16,10 +16,9 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class ListadoPage {
 
-  public listadoPeliculas;
-  public arrayPeliculas: any = [];
-  public buscador: any = [];
-  public peliculas: any = [];
+  public arrayPeliculas: Array<any>;
+  public search: string;
+  public isSearchbarOpened = false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -27,25 +26,29 @@ export class ListadoPage {
      private modalCtrl: ModalController,
      public loadingController: LoadingController, 
      public toastCtrl : ToastController,
+     public menuCtrl: MenuController,
      ) {
-  this.arrayPeliculas = []; 
+  
   }
   
   ionViewDidLoad(){
-    
+    //this.arrayPeliculas = {"Search":[{"Title":"The Avengers","Year":"2012","imdbID":"tt0848228","Type":"movie","Poster":"https://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SX300.jpg"},{"Title":"Avengers: Age of Ultron","Year":"2015","imdbID":"tt2395427","Type":"movie","Poster":"https://ia.media-imdb.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg"},{"Title":"Avengers: Infinity War","Year":"2018","imdbID":"tt4154756","Type":"movie","Poster":"https://ia.media-imdb.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"},{"Title":"The Avengers","Year":"1998","imdbID":"tt0118661","Type":"movie","Poster":"https://ia.media-imdb.com/images/M/MV5BYWE1NTdjOWQtYTQ2Ny00Nzc5LWExYzMtNmRlOThmOTE2N2I4XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_SX300.jpg"},{"Title":"The Avengers: Earth's Mightiest Heroes","Year":"2010–2012","imdbID":"tt1626038","Type":"series","Poster":"https://ia.media-imdb.com/images/M/MV5BYzA4ZjVhYzctZmI0NC00ZmIxLWFmYTgtOGIxMDYxODhmMGQ2XkEyXkFqcGdeQXVyNjExODE1MDc@._V1_SX300.jpg"},{"Title":"Ultimate Avengers","Year":"2006","imdbID":"tt0491703","Type":"movie","Poster":"https://ia.media-imdb.com/images/M/MV5BMjY0Mzg1NDAtZmVmNC00NDIyLTk4YjEtYzU4ZTU2ZTZkMDc0L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"},{"Title":"Ultimate Avengers II","Year":"2006","imdbID":"tt0803093","Type":"movie","Poster":"https://ia.media-imdb.com/images/M/MV5BZjI3MTI5ZTYtZmNmNy00OGZmLTlhNWMtNjZiYmYzNDhlOGRkL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"},{"Title":"The Avengers","Year":"1961–1969","imdbID":"tt0054518","Type":"series","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BNjkwMzMzOTQxMF5BMl5BanBnXkFtZTcwNjQzMzIzMQ@@._V1_SX300.jpg"},{"Title":"Avengers Assemble","Year":"2013–","imdbID":"tt2455546","Type":"series","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTY0NTUyMDQwOV5BMl5BanBnXkFtZTgwNjAwMTA0MDE@._V1_SX300.jpg"},{"Title":"Next Avengers: Heroes of Tomorrow","Year":"2008","imdbID":"tt1259998","Type":"movie","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ3NjExNjY4N15BMl5BanBnXkFtZTcwNTczODkwNQ@@._V1_SX300.jpg"}],"totalResults":"91","Response":"True"};
+
   }
 
   public obtenerPelicula(evento:any): void{
-    if(this.buscador === ''){
+    if(this.search === ''){
       return;
     }
     let loading = this.loadingController.create();
     loading.present();
-    this.dataProvider.buscarPelicula(this.buscador).subscribe(
-      res => {
+    this.dataProvider.buscarPelicula(this.search).subscribe(
+      lista => {
         loading.dismiss();
-        if (res.Search) {
-          this.peliculas = res.Search;
+        if (lista.Search) {
+          this.arrayPeliculas = lista.Search;
+          console.log(this.arrayPeliculas);
+          
         }
         else {
           let toastError = this.toastCtrl.create({
@@ -53,7 +56,7 @@ export class ListadoPage {
             duration: 1500,
             position: 'bottom'
           });
-          this.peliculas = [];
+          this.arrayPeliculas = [];
           toastError.present();
         }
       },
@@ -68,4 +71,13 @@ export class ListadoPage {
     );
   }
 
+  openMenu() {
+    this.menuCtrl.open();
+  }
+ 
+
+  public verDescripcion(pelicula: any): void {
+    let modalDetalles = this.modalCtrl.create('page-descripcion', { pelicula });
+    modalDetalles.present();
+  }
 }

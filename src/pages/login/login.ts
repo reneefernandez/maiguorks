@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, ToastController, NavParams, Loading, LoadingController } from 'ionic-angular';
 import { RegistroPage } from '../registro/registro';
 import { ListadoPage } from '../listado/listado';
+import { BaseDatosProvider } from '../../providers/base-datos/base-datos'
 
 @IonicPage({
   name: 'login'
@@ -19,13 +20,14 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public toastCtrl: ToastController,
     public navParams: NavParams,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private baseDatos: BaseDatosProvider  
   ) {
     this.datosLogin = {
       usuario: '',
       contrasenia:''
     };
-    this.storage = (window as any).localStorage;
+
   }
 
   // Para controlar cantidad de caracteres
@@ -36,10 +38,9 @@ export class LoginPage {
     }
     else {
       this.mostrarLoading('Iniciando Sesión');
+      this.baseDatos.crear('usuario',this.datosLogin);
 
       setTimeout(() => {
-        this.storage.setItem('session', '{auth_token: alagrandelepusecuca}');
-        this.storage.clear();
         this.hideLoading();
         this.navCtrl.setRoot(ListadoPage);
       }, 850);

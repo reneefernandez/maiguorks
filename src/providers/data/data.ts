@@ -30,9 +30,13 @@ export class DataProvider {
 
   //metodo para buscar la pelicula
   public buscarPelicula(nombre: any): Observable<any> {
-    let url = 'http://www.omdbapi.com/?apikey=cf36c0f0&s&' + nombre
+    let url = 'http://www.omdbapi.com/?i=tt3896198&apikey=347244bd&s=' + nombre
+   // let url = 'http://www.omdbapi.com/?i=tt3896198&apikey=347244bd'
+    //'http://www.omdbapi.com/?apikey=cf36c0f0&s=' + nombre
     return this.http.get(url).map((lista:Response) =>{
       return lista;
     });
   }
+
+
 }
