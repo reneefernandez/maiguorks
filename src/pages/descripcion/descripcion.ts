@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, NavParams } from 'ionic-angular';
 
 @IonicPage({
   name: 'page-descripcion',
@@ -11,7 +11,15 @@ import { NavController, IonicPage } from 'ionic-angular';
 })
 export class DescripcionPage {
 
-  constructor(public navCtrl: NavController) {
+  public pelicula: any; 
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.pelicula = this.navParams.get('pelicula');
   }
+
+
+  public cerrar(): void {
+    this.navCtrl.pop();
+  }
+
   
 }
