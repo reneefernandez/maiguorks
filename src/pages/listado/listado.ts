@@ -3,6 +3,7 @@ import { NavController, IonicPage, NavParams, ModalController, LoadingController
 
 
 import { DataProvider } from '../../providers/data/data';
+import { BaseDatosProvider } from '../../providers/base-datos/base-datos';
 
 
 
@@ -19,6 +20,7 @@ export class ListadoPage {
   public arrayPeliculas: Array<any>;
   public search: string;
   public isSearchbarOpened = false;
+  public listaFavoritos: Array<any>;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -27,6 +29,7 @@ export class ListadoPage {
      public loadingController: LoadingController, 
      public toastCtrl : ToastController,
      public menuCtrl: MenuController,
+     public baseDatos: BaseDatosProvider
      ) {
   
   }
@@ -80,4 +83,29 @@ export class ListadoPage {
     let modalDetalles = this.modalCtrl.create('page-descripcion', { pelicula });
     modalDetalles.present();
   }
+
+  public agregarFavoritos(pelicula: any) {
+    let existeFavoritos = this.baseDatos.obtener('listaFavoritos');   
+    if (!existeFavoritos){
+      this.baseDatos.crear('listaFavoritos',[]);
+      
+    }
+    this.listaFavoritos = this.baseDatos.obtener('listaFavoritos');   
+
+    
+    this.listaFavoritos.push(pelicula);
+    this.baseDatos.modificar('listaFavoritos', this.listaFavoritos);
+
+    let toastFavoritos = this.toastCtrl.create({
+      message: 'Se agrego esta peli a favoritos.',
+      duration: 1000,
+      position: 'bottom'
+    });
+    toastFavoritos.present();
+
+  }
+
+
+
+  
 }

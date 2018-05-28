@@ -28,6 +28,9 @@
         <ion-card-content >
           <img [src]="pelicula.Poster" style="width: 50%" alt="" (click)="verDescripcion(pelicula);">
           <p> {{pelicula.Year}} </p>
+          <button ion-button (click)="agregarFavoritos(pelicula);">
+            Agregar a Favoritos
+          </button>
         </ion-card-content>
       </ion-card>
       
