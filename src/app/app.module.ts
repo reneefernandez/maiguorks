@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
 import { HttpClientModule } from '@angular/common/http';
 import { BaseDatosProvider } from '../providers/base-datos/base-datos';
+//import { MiPerfilPage } from '../pages/mi-perfil/mi-perfil';
 //import { PeliculasProvider } from '../providers/peliculas/peliculas';
 
 
@@ -24,6 +25,7 @@ import { BaseDatosProvider } from '../providers/base-datos/base-datos';
     HomePage,
     RegistroPage,
     ListadoPage,
+  //  MiPerfilPage,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { BaseDatosProvider } from '../providers/base-datos/base-datos';
     HomePage,
     RegistroPage,
     ListadoPage,
+  //  MiPerfilPage,
   ],
   providers: [
     StatusBar,

@@ -13,27 +13,30 @@
 </ion-header>
 
 
-<ion-content padding>
-      
-        <ion-row padding-left>
-          <ion-col>
-            <p *ngIf="usuario.nombre != null">{{usuario.nombre}} {{usuario.apellido}}, {{usuario.pais}}</p>
-            <p>{{usuario.username}}</p>
-            <p *ngIf="usuario.email != null">{{usuario.email}}</p>
-          </ion-col>
-        </ion-row>
-      
-        <ion-row padding-left>
-          <ion-col>
-            <p>{{usuario.bio}}</p>
-          </ion-col>
-        </ion-row>
+<ion-content>
+    <ion-row>
+        <ion-col>
+        
+          <!-- <p *ngIf="usuario.nombre != null">{{usuario.nombre}} {{usuario.apellido}}</p>
+          <p>{{usuario.email}}</p> -->
+        </ion-col>
+      </ion-row>
       
         <ion-row>
           <ion-col padding>
-            <h3>Favourites Movies</h3>
+            <h3>Favoritos</h3>
           </ion-col>
         </ion-row>
       
+        <ion-card *ngFor="let favorito of listaFavoritos">
+            <ion-card-header> 
+            {{favorito.Title}}  
+            </ion-card-header>
+            <ion-card-content >
+              <img [src]="favorito.Poster" style="width: 40%" alt="" (click)="verDescripcionFavorito(favorito)">
+              <p> {{favorito.Year}} </p>
+            </ion-card-content>
+          </ion-card>
+       
               
       </ion-content>

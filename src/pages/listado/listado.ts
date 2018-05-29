@@ -4,6 +4,7 @@ import { NavController, IonicPage, NavParams, ModalController, LoadingController
 
 import { DataProvider } from '../../providers/data/data';
 import { BaseDatosProvider } from '../../providers/base-datos/base-datos';
+import { MiPerfilPage } from '../mi-perfil/mi-perfil';
 
 
 
@@ -91,8 +92,6 @@ export class ListadoPage {
       
     }
     this.listaFavoritos = this.baseDatos.obtener('listaFavoritos');   
-
-    
     this.listaFavoritos.push(pelicula);
     this.baseDatos.modificar('listaFavoritos', this.listaFavoritos);
 
@@ -105,7 +104,8 @@ export class ListadoPage {
 
   }
 
-
-
-  
+  public verPerfil(): void {
+    let modalUsuario = this.modalCtrl.create('perfilPage');
+    modalUsuario.present();
+  }
 }

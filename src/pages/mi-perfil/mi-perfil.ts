@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ModalController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ModalController, ToastController} from 'ionic-angular';
 import { BaseDatosProvider } from '../../providers/base-datos/base-datos';
 
 
@@ -10,17 +10,21 @@ import { BaseDatosProvider } from '../../providers/base-datos/base-datos';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: 'perfilPage',
+})
 @Component({
   selector: 'page-mi-perfil',
   templateUrl: 'mi-perfil.html',
 })
 export class MiPerfilPage {
   public  usuario: any; 
+  public listaFavoritos: Array<any>;
+  public favorito: string;
   
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public BaseDatosProvider: BaseDatosProvider, private modalController: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public BaseDatosProvider: BaseDatosProvider, private modalController: ModalController,  public toastCtrl : ToastController) {
     this.usuario = this.BaseDatosProvider.obtener('usuario');
+    this.listaFavoritos = this.BaseDatosProvider.obtener('favoritos');
   }
 
   ionViewDidLoad() {
@@ -30,12 +34,15 @@ export class MiPerfilPage {
     ionViewDidEnter(){
       this.usuario = this.BaseDatosProvider.obtener('usuario');
     }
+    
+  public cerrar(): void {
+    this.navCtrl.pop();
+  }
 
- 
-    // public verDetalle(movie: any): void {
-    //   let modalDetails = this.modalController.create('page-details', { movie });
-    //   modalDetails.present();
-    // }
-  
+
+public verDescripcionFavorito(pelicula: any): void {
+  let modalDetalles = this.modalController.create('page-descripcion', { pelicula });
+  modalDetalles.present();
+}
 
 }

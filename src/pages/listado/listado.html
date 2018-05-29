@@ -21,18 +21,18 @@
 </ion-header>
 
 <ion-content>
+  <!-- <button ion-button (click)="goToMiPerfil();">Mi Perfil</button> -->
+   <button ion-button (click)="verPerfil();">Mi Perfil</button>
     <ion-card *ngFor="let pelicula of arrayPeliculas">
         <ion-card-header> 
         {{pelicula.Title}}  
         </ion-card-header>
         <ion-card-content >
-          <img [src]="pelicula.Poster" style="width: 50%" alt="" (click)="verDescripcion(pelicula);">
+          <img [src]="pelicula.Poster" style="width: 40%" alt="" (click)="verDescripcion(pelicula);">
           <p> {{pelicula.Year}} </p>
           <button ion-button (click)="agregarFavoritos(pelicula);">
             Agregar a Favoritos
           </button>
         </ion-card-content>
       </ion-card>
-      
-
 </ion-content>

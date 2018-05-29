@@ -7,7 +7,11 @@ import { NavController } from 'ionic-angular';
 })
 export class RegistroPage {
 
+  
   constructor(public navCtrl: NavController) {
   }
+  
+
+
   
 }

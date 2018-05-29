@@ -12,10 +12,10 @@ import { NavController, IonicPage, NavParams } from 'ionic-angular';
 export class DescripcionPage {
 
   public pelicula: any; 
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.pelicula = this.navParams.get('pelicula');
   }
-
 
   public cerrar(): void {
     this.navCtrl.pop();
