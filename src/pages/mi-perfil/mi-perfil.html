@@ -19,7 +19,7 @@
 <ion-content>
     <ion-row>
         <ion-col>
-         <!-- <ion-input [(ngModel)]="usuario.usuario" [disabled]="editar" ></ion-input> -->
+         <ion-input padding value="{{usuario?.usuario}}" [disabled]="!editar" ></ion-input>
         </ion-col>
       </ion-row>
       
@@ -42,5 +42,6 @@
               
       </ion-content>
       <ion-footer>
-        <button ion-button block (click)="editar = !editar"> Editar Perfil </button>
+        <button ion-button block (click)="editar = !editar" *ngIf="!editar"> Editar Perfil </button>
+        <button ion-button block (click)="guardarNombre()" *ngIf="editar"> Guardar </button>
       </ion-footer>

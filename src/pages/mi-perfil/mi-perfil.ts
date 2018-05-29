@@ -12,6 +12,7 @@ import { BaseDatosProvider } from '../../providers/base-datos/base-datos';
 
 @IonicPage({
   name: 'perfilPage',
+
 })
 @Component({
   selector: 'page-mi-perfil',
@@ -24,7 +25,9 @@ export class MiPerfilPage {
   public editar: boolean = false; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public baseDatosProvider: BaseDatosProvider, private modalController: ModalController,  public toastCtrl : ToastController) {
-   }
+    this.usuario = this.baseDatosProvider.obtener('usuario');
+    this.listaFavoritos =  this.baseDatosProvider.obtener('listaFavoritos'); 
+  }
 
   ionViewDidEnter() {
    this.usuario = this.baseDatosProvider.obtener('usuario');
@@ -42,6 +45,11 @@ public verDescripcionFavorito(pelicula: any): void {
   modalDetalles.present();
 }
 
+public guardarNombre():void{
+  debugger;
+this.baseDatosProvider.modificar('usuario',this.usuario);  
+this.editar = false;
+}
 
 
 }

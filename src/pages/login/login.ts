@@ -47,10 +47,10 @@ export class LoginPage {
     }
   }
 
-  goToRegistro(params) {
-    if (!params) params = {};
-    this.navCtrl.push(RegistroPage);
-  }
+  // goToRegistro(params) {
+  //   if (!params) params = {};
+  //   this.navCtrl.push(RegistroPage);
+  // }
 
   goToListado(params) {
     if (!params) params = {};
