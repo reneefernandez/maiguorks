@@ -18,31 +18,30 @@ import { BaseDatosProvider } from '../../providers/base-datos/base-datos';
   templateUrl: 'mi-perfil.html',
 })
 export class MiPerfilPage {
-  public  usuario: any; 
+  public usuario: any; 
   public listaFavoritos: Array<any>;
   public favorito: string;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public BaseDatosProvider: BaseDatosProvider, private modalController: ModalController,  public toastCtrl : ToastController) {
-    this.usuario = this.BaseDatosProvider.obtener('usuario');
-    this.listaFavoritos = this.BaseDatosProvider.obtener('favoritos');
-  }
+  public editar: boolean = false; 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MiPerfilPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public baseDatosProvider: BaseDatosProvider, private modalController: ModalController,  public toastCtrl : ToastController) {
+   }
+
+  ionViewDidEnter() {
+   this.usuario = this.baseDatosProvider.obtener('usuario');
+   debugger;
+   this.listaFavoritos =  this.baseDatosProvider.obtener('listaFavoritos');
   }
   
-    ionViewDidEnter(){
-      this.usuario = this.BaseDatosProvider.obtener('usuario');
-    }
     
   public cerrar(): void {
     this.navCtrl.pop();
   }
 
-
 public verDescripcionFavorito(pelicula: any): void {
   let modalDetalles = this.modalController.create('page-descripcion', { pelicula });
   modalDetalles.present();
 }
+
+
 
 }

@@ -1,14 +1,9 @@
 <ion-header>
     <ion-navbar>
-       <ion-title *ngIf="!isSearchbarOpened"> Listado
-         <!-- <ion-menu [content]="content">
-            <ion-content>
-                <ion-list>
-                  <ion-item menuClose detail-none>Close Menu</ion-item>
-                </ion-list>
-              </ion-content>   
-            </ion-menu> -->
-        </ion-title>
+        <!-- <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button> -->
+       <ion-title *ngIf="!isSearchbarOpened"> Listado </ion-title>
   
         <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" (ionInput)="obtenerPelicula($event)" (ionCancel)="isSearchbarOpened=false" [(ngModel)]="search"></ion-searchbar>
         <ion-buttons end>
@@ -22,7 +17,7 @@
 
 <ion-content>
   <!-- <button ion-button (click)="goToMiPerfil();">Mi Perfil</button> -->
-   <button ion-button (click)="verPerfil();">Mi Perfil</button>
+   
     <ion-card *ngFor="let pelicula of arrayPeliculas">
         <ion-card-header> 
         {{pelicula.Title}}  
@@ -35,4 +30,9 @@
           </button>
         </ion-card-content>
       </ion-card>
+     
 </ion-content>
+
+<ion-footer padding text-center>
+<button ion-button (click)="verPerfil();">Mi Perfil</button>
+</ion-footer>

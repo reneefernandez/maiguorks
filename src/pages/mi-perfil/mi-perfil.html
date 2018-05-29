@@ -8,6 +8,9 @@
 
   <ion-navbar>
     <ion-title>Mi Perfil</ion-title>
+    <ion-buttons left>
+        <button ion-button (click)="cerrar()">Cerrar</button>
+      </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,9 +19,7 @@
 <ion-content>
     <ion-row>
         <ion-col>
-        
-          <!-- <p *ngIf="usuario.nombre != null">{{usuario.nombre}} {{usuario.apellido}}</p>
-          <p>{{usuario.email}}</p> -->
+         <!-- <ion-input [(ngModel)]="usuario.usuario" [disabled]="editar" ></ion-input> -->
         </ion-col>
       </ion-row>
       
@@ -40,3 +41,6 @@
        
               
       </ion-content>
+      <ion-footer>
+        <button ion-button block (click)="editar = !editar"> Editar Perfil </button>
+      </ion-footer>
