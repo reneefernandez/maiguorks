@@ -19,7 +19,7 @@
 <ion-content>
     <ion-row>
         <ion-col>
-         <ion-input padding value="{{usuario?.usuario}}" [disabled]="!editar" ></ion-input>
+         <ion-input padding value="{{usuario?.usuario}}" [(ngModel)]="nuevoNombre" [disabled]="!editar" ></ion-input>
         </ion-col>
       </ion-row>
       

@@ -23,6 +23,7 @@ export class MiPerfilPage {
   public listaFavoritos: Array<any>;
   public favorito: string;
   public editar: boolean = false; 
+  public nuevoNombre: string; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public baseDatosProvider: BaseDatosProvider, private modalController: ModalController,  public toastCtrl : ToastController) {
     this.usuario = this.baseDatosProvider.obtener('usuario');
@@ -46,7 +47,7 @@ public verDescripcionFavorito(pelicula: any): void {
 }
 
 public guardarNombre():void{
-  debugger;
+  this.usuario.usuario = this.nuevoNombre;
 this.baseDatosProvider.modificar('usuario',this.usuario);  
 this.editar = false;
 }
